@@ -1,8 +1,8 @@
 <template>
 <div class="container">
   <div class='head'>
-    <img src='./assets/logo.svg' alt='халва' />
-    <img class='close' src='./assets/close.svg' alt='x' />
+    <img src='./assets/img/logo.svg' alt='халва' />
+    <img class='close' src='./assets/img/close.svg' alt='x' />
   </div>
 
   <div class='content'>
@@ -10,7 +10,10 @@
       <p class='content-main-text'>
         Этот товар можно оплатить частями Виртаульной Халвой за:
       </p>
-      <p class='content-main-cost'>2 330 ₽/ месяц</p>
+      <p class='content-main-cost'>
+        <span>2 330 ₽/ месяц</span>
+        <img src='./assets/img/tip.svg' alt='?' />
+      </p>
     </div>
 
     <img class='content-item' :src='itemImg' alt='товар' />
@@ -32,7 +35,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import 'modern-css-reset';
+@import './assets/styles/reset.scss';
 @import './assets/styles/fonts';
 
 .container {
@@ -78,6 +81,12 @@ export default defineComponent({
       font-weight: bold;
       font-size: 22px;
       color: #000;
+      display: flex;
+
+      img {
+        margin-left: 7px;
+        cursor: pointer;
+      }
     }
   }
 
