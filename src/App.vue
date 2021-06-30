@@ -14,7 +14,30 @@
 
     <div class="content">
       <div class="content-main">
-        <p class="content-main-text">
+        <div
+          v-if="['catalog', 'catalogParts'].includes(style)"
+          class="content-main-text-catalog"
+        >
+          <p v-if="style === 'catalog'">
+            Купить сейчас,
+            <br>
+            <span class="content-main-text-catalog-highlight">
+              а заплатить потом!
+            </span>
+          </p>
+
+          <p v-else-if="style === 'catalogParts'">
+            Зачем платить всё сразу, если
+            <span class="content-main-text-catalog-highlight">
+              можно Частями?
+            </span>
+          </p>
+        </div>
+
+        <p
+          v-else
+          class="content-main-text"
+        >
           {{ text }}
         </p>
 
@@ -62,13 +85,19 @@
 import { defineComponent, computed } from 'vue'
 import AppButton from './components/app/AppButton.vue'
 
+const defaultOpts: Window['VHWidgetOpts'] = {
+  style: 'catalog',
+  months: 4,
+  textButton: 'Получить Виртуальную Халву'
+}
+
 export default defineComponent({
   components: {
     AppButton
   },
 
   setup () {
-    const options = window.VHWidgetOpts || {}
+    const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
     const costPerMonth = computed(() => {
       const { cost, months } = options
@@ -96,8 +125,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import './assets/styles/reset.scss';
+@import './assets/styles/reset';
 @import './assets/styles/fonts';
+@import './assets/styles/variables';
 
 .container {
   position: absolute;
@@ -135,6 +165,22 @@ export default defineComponent({
       line-height: 20px;
       letter-spacing: -0.36px;
       margin-bottom: 12px;
+
+      &-catalog {
+        width: 317px;
+        height: 64px;
+        font-family: 'SF Pro Display', sans-serif;
+        font-size: 26px;
+        line-height: 32px;
+        letter-spacing: -0.28px;
+        color: #000;
+        margin-bottom: 24px;
+
+        &-highlight {
+          color: $red;
+          font-weight: 600;
+        }
+      }
     }
 
     &-cost {

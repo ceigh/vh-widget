@@ -5,11 +5,13 @@
 </template>
 
 <style lang="scss" scoped>
+@import '../../assets/styles/variables';
+
 button {
   width: 204px;
   height: 32px;
   border-radius: 4px;
-  background: #ff4e50;
+  background: $red;
   color: #fff;
   font-weight: 600 !important;
   font-size: 11px !important;
