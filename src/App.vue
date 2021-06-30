@@ -85,9 +85,10 @@
 import { defineComponent, computed } from 'vue'
 import AppButton from './components/app/AppButton.vue'
 
-const defaultOpts: Window['VHWidgetOpts'] = {
+const defaultOpts = {
   style: 'catalog',
   months: 4,
+  text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
   textButton: 'Получить Виртуальную Халву'
 }
 

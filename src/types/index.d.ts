@@ -1,8 +1,8 @@
 type Style = 'item' | 'itemPhoto' | 'cart' | 'catalog' | 'catalogParts'
 
 interface VHWidgetOpts {
-  style: Style,
-  months: number,
+  style?: Style,
+  months?: number,
   cost?: number,
   text?: string,
   textButton?: string,
