@@ -3,13 +3,35 @@
     class="container"
     :style="{ background: color }"
   >
-    <div class="head">
+    <div
+      class="head"
+      :style="{ marginBottom: `${partnerLogo ? 10 : 18}px`}"
+    >
+      <div class="head-logo">
+        <img
+          src="./assets/img/logo.svg"
+          alt="халва"
+        >
+
+        <div
+          v-if="partnerLogo"
+          class="head-logo-partner"
+        >
+          <img
+            src="./assets/img/separator.svg"
+            alt="|"
+            class="head-logo-partner-separator"
+          >
+          <img
+            class="head-logo-partner-logo"
+            :src="partnerLogo"
+            alt="партнер"
+          >
+        </div>
+      </div>
+
       <img
-        src="./assets/img/logo.svg"
-        alt="халва"
-      >
-      <img
-        class="close"
+        class="head-close"
         src="./assets/img/close.svg"
         alt="x"
       >
@@ -165,9 +187,26 @@ export default defineComponent({
 .head {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 18px;
 
-  .close {
+  &-logo {
+    display: flex;
+
+    &-partner {
+      display: flex;
+      align-items: center;
+
+      &-separator {
+        margin: 0 10px;
+      }
+
+      &-logo {
+        max-height: 16px;
+        max-width: 100px;
+      }
+    }
+  }
+
+  &-close {
     cursor: pointer;
   }
 }

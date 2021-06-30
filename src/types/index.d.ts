@@ -8,6 +8,7 @@ interface VHWidgetOpts {
   textButton?: string,
   itemImg?: string
   color?: 1 | 2 | 3 | 4 | 5 | string
+  partnerLogo?: string
 }
 
 declare interface Window { VHWidgetOpts: VHWidgetOpts }
