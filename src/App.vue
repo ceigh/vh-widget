@@ -1,7 +1,7 @@
 <template>
   <div
     class="container"
-    :style="{ background: color }"
+    :style="{ background, borderRadius }"
   >
     <div
       class="head"
@@ -140,27 +140,37 @@ export default defineComponent({
       return options.textButton
     })
 
-    const color = computed(() => {
-      const { color } = options
+    const background = computed(() => {
+      const { background } = options
       const white = '#fff'
-      if (!color) return white
+      if (!background) return white
 
-      if (color === 1) return '#f8f3ee'
-      if (color === 2) return '#f8eef0'
-      if (color === 3) return '#f3eef8'
-      if (color === 4) return '#eef3f8'
-      if (color === 5) return '#eef8f1'
+      if (background === 1) return '#f8f3ee'
+      if (background === 2) return '#f8eef0'
+      if (background === 3) return '#f3eef8'
+      if (background === 4) return '#eef3f8'
+      if (background === 5) return '#eef8f1'
 
-      if (typeof color === 'string') return color
+      if (typeof background === 'string') return background
       return white
+    })
+
+    const borderRadius = computed(() => {
+      const { borderRadius } = options
+      let radius = 7
+      if (typeof borderRadius === 'number') radius = borderRadius
+      return `${radius}px`
     })
 
     return {
       ...options,
+
       costPerMonth,
       costPerMonthText,
       textButton,
-      color
+
+      background,
+      borderRadius
     }
   }
 })
@@ -180,7 +190,6 @@ export default defineComponent({
   padding: 16px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
-  border-radius: 7px;
   font-family: 'SF Pro Text', sans-serif;
 }
 

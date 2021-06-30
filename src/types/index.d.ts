@@ -7,8 +7,9 @@ interface VHWidgetOpts {
   text?: string,
   textButton?: string,
   itemImg?: string
-  color?: 1 | 2 | 3 | 4 | 5 | string
-  partnerLogo?: string
+  partnerLogo?: string,
+  background?: 1 | 2 | 3 | 4 | 5 | string
+  borderRadius?: number
 }
 
 declare interface Window { VHWidgetOpts: VHWidgetOpts }
