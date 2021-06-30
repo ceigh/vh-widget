@@ -10,10 +10,13 @@
       <p class='content-main-text'>
         Этот товар можно оплатить частями Виртаульной Халвой за:
       </p>
+
       <p class='content-main-cost'>
         <span>2 330 ₽/ месяц</span>
         <img src='./assets/img/tip.svg' alt='?' />
       </p>
+
+      <app-button>Получить Виртуальную Халву</app-button>
     </div>
 
     <img class='content-item' :src='itemImg' alt='товар' />
@@ -23,8 +26,13 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import AppButton from './components/app/AppButton.vue'
 
 export default defineComponent({
+  components: {
+    AppButton
+  },
+
   setup () {
     return {
       itemImg: 'https://img.mvideo.ru/Pdb/50126638b.jpg'
@@ -82,6 +90,8 @@ export default defineComponent({
       font-size: 22px;
       color: #000;
       display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
 
       img {
         margin-left: 7px;
