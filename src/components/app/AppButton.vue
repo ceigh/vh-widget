@@ -18,5 +18,6 @@ button {
   letter-spacing: -0.41px;
   cursor: pointer;
   border: none;
+  user-select: none;
 }
 </style>

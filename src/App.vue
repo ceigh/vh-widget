@@ -21,6 +21,12 @@
 
     <img class='content-item' :src='itemImg' alt='товар' />
   </div>
+
+  <div class='footer'>
+    <p>0₽ - первый платёж</p>
+    <p>0₽ - переплат</p>
+    <p>4 мес. - рассрочка</p>
+  </div>
 </div>
 </template>
 
@@ -52,7 +58,7 @@ export default defineComponent({
   bottom: 3rem;
   width: 443px;
   height: 208px;
-  padding: 1rem;
+  padding: 16px;
   color: #2e2e2e;
   background: #fff;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
@@ -85,13 +91,14 @@ export default defineComponent({
     }
 
     &-cost {
+      height: 22px;
       font-family: 'SF Pro Display', sans-serif;
       font-weight: bold;
       font-size: 22px;
       color: #000;
       display: flex;
       align-items: center;
-      margin-bottom: 1rem;
+      margin-bottom: 16px;
 
       img {
         margin-left: 7px;
@@ -110,5 +117,16 @@ export default defineComponent({
     border: 1px solid #e4e4e4;
     border-radius: 3px;
   }
+}
+
+.footer {
+  max-width: 284px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  line-height: 20px;
+  letter-spacing: -0.36px;
+  margin-top: 17px;
 }
 </style>
