@@ -12,6 +12,7 @@ window.VHWidgetOpts = {
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
   textButton: 'Получить Виртуальную Халву',
   itemImg: 'https://img.mvideo.ru/Pdb/50126638b.jpg'
+  // color: 3
 }
 
 const el = document.createElement('div')

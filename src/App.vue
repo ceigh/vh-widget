@@ -1,5 +1,8 @@
 <template>
-  <div class="container">
+  <div
+    class="container"
+    :style="{ background: color }"
+  >
     <div class="head">
       <img
         src="./assets/img/logo.svg"
@@ -115,11 +118,27 @@ export default defineComponent({
       return options.textButton
     })
 
+    const color = computed(() => {
+      const { color } = options
+      const white = '#fff'
+      if (!color) return white
+
+      if (color === 1) return '#f8f3ee'
+      if (color === 2) return '#f8eef0'
+      if (color === 3) return '#f3eef8'
+      if (color === 4) return '#eef3f8'
+      if (color === 5) return '#eef8f1'
+
+      if (typeof color === 'string') return color
+      return white
+    })
+
     return {
       ...options,
       costPerMonth,
       costPerMonthText,
-      textButton
+      textButton,
+      color
     }
   }
 })
@@ -138,7 +157,6 @@ export default defineComponent({
   height: 208px;
   padding: 16px;
   color: #2e2e2e;
-  background: #fff;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   border-radius: 7px;
   font-family: 'SF Pro Text', sans-serif;
