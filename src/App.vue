@@ -7,31 +7,30 @@
 
   <div class='content'>
     <div class='content-main'>
-      <p class='content-main-text'>
-        Этот товар можно оплатить частями Виртаульной Халвой за:
-      </p>
+      <p class='content-main-text'>{{ text }}</p>
 
       <p class='content-main-cost'>
-        <span>2 330 ₽/ месяц</span>
+        <span>{{ costPerMonthText }}</span>
         <img src='./assets/img/tip.svg' alt='?' />
       </p>
 
-      <app-button>Получить Виртуальную Халву</app-button>
+      <app-button>{{ textButton }}</app-button>
     </div>
 
-    <img class='content-item' :src='itemImg' alt='товар' />
+    <img v-if='style === "itemPhoto" && itemImg' class='content-item'
+      :src='itemImg' alt='товар' />
   </div>
 
   <div class='footer'>
     <p>0₽ - первый платёж</p>
     <p>0₽ - переплат</p>
-    <p>4 мес. - рассрочка</p>
+    <p>{{ months }} мес. - рассрочка</p>
   </div>
 </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, computed } from 'vue'
 import AppButton from './components/app/AppButton.vue'
 
 export default defineComponent({
@@ -40,9 +39,28 @@ export default defineComponent({
   },
 
   setup () {
+    const options = window.VHWidgetOpts || {}
+
+    const costPerMonth = computed(() => {
+      const { cost, months } = options
+      return Math.round((cost ?? 0) / months)
+    })
+    const costPerMonthText = computed(() => {
+      return `${costPerMonth.value} ₽/ месяц`
+    })
+
+    const textButton = computed(() => {
+      if (options.style === 'cart') {
+        return `Купить за ${costPerMonthText.value}`
+      }
+      return options.textButton
+    })
+
     return {
-      itemImg: 'https://img.mvideo.ru/Pdb/50126638b.jpg'
-      // itemImg: 'https://picsum.photos/400/300'
+      ...options,
+      costPerMonth,
+      costPerMonthText,
+      textButton
     }
   }
 })
