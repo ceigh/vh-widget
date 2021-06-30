@@ -3,7 +3,9 @@ import App from './App.vue'
 
 // TODO: remove
 window.VHWidgetOpts = {
-  style: 'itemPhoto',
+  // style: 'item',
+  // style: 'itemPhoto',
+  style: 'cart',
   months: 4,
   cost: 9320,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',

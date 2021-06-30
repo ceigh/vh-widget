@@ -1,32 +1,61 @@
 <template>
-<div class="container">
-  <div class='head'>
-    <img src='./assets/img/logo.svg' alt='халва' />
-    <img class='close' src='./assets/img/close.svg' alt='x' />
-  </div>
-
-  <div class='content'>
-    <div class='content-main'>
-      <p class='content-main-text'>{{ text }}</p>
-
-      <p class='content-main-cost'>
-        <span>{{ costPerMonthText }}</span>
-        <img src='./assets/img/tip.svg' alt='?' />
-      </p>
-
-      <app-button>{{ textButton }}</app-button>
+  <div class="container">
+    <div class="head">
+      <img
+        src="./assets/img/logo.svg"
+        alt="халва"
+      >
+      <img
+        class="close"
+        src="./assets/img/close.svg"
+        alt="x"
+      >
     </div>
 
-    <img v-if='style === "itemPhoto" && itemImg' class='content-item'
-      :src='itemImg' alt='товар' />
-  </div>
+    <div class="content">
+      <div class="content-main">
+        <p class="content-main-text">
+          {{ text }}
+        </p>
 
-  <div class='footer'>
-    <p>0₽ - первый платёж</p>
-    <p>0₽ - переплат</p>
-    <p>{{ months }} мес. - рассрочка</p>
+        <p
+          v-if="['item', 'itemPhoto'].includes(style)"
+          class="content-main-cost"
+        >
+          <span>{{ costPerMonthText }}</span>
+          <img
+            class="tip"
+            src="./assets/img/tip.svg"
+            alt="?"
+          >
+        </p>
+
+        <div style="display: flex;">
+          <app-button>{{ textButton }}</app-button>
+
+          <img
+            v-if="style === 'cart'"
+            class="tip"
+            src="./assets/img/tip.svg"
+            alt="?"
+          >
+        </div>
+      </div>
+
+      <img
+        v-if="['itemPhoto', 'cart'].includes(style) && itemImg"
+        class="content-item"
+        :src="itemImg"
+        alt="товар"
+      >
+    </div>
+
+    <div class="footer">
+      <p>0₽ - первый платёж</p>
+      <p>0₽ - переплат</p>
+      <p>{{ months }} мес. - рассрочка</p>
+    </div>
   </div>
-</div>
 </template>
 
 <script lang="ts">
@@ -117,11 +146,6 @@ export default defineComponent({
       display: flex;
       align-items: center;
       margin-bottom: 16px;
-
-      img {
-        margin-left: 7px;
-        cursor: pointer;
-      }
     }
   }
 
@@ -135,6 +159,11 @@ export default defineComponent({
     border: 1px solid #e4e4e4;
     border-radius: 3px;
   }
+}
+
+.tip {
+  margin-left: 7px;
+  cursor: pointer;
 }
 
 .footer {
