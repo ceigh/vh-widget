@@ -127,7 +127,7 @@ export default defineComponent({
 
     const costPerMonth = computed(() => {
       const { cost, months } = options
-      return Math.round((cost ?? 0) / months)
+      return Math.round((cost ?? 0) / Math.round(months))
     })
     const costPerMonthText = computed(() => {
       return `${costPerMonth.value} ₽/ месяц`
