@@ -35,23 +35,18 @@ export default defineComponent({
   position: absolute;
   left: 3rem;
   bottom: 3rem;
-
   width: 443px;
   height: 208px;
-
   padding: 1rem;
-
-  color: #2E2E2E;
-
-  background: #FFF;
-  box-shadow: 0px 4px 25px rgba(23, 19, 29, 0.12);
+  color: #2e2e2e;
+  background: #fff;
+  box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   border-radius: 7px;
 }
 
 .head {
   display: flex;
   justify-content: space-between;
-
   margin-bottom: 18px;
 
   .close {
@@ -70,10 +65,8 @@ export default defineComponent({
 
     &-text {
       margin: 0;
-
       width: 260px;
       height: 40px;
-
       font-size: 15px;
       line-height: 20px;
       letter-spacing: -0.36px;
@@ -86,9 +79,8 @@ export default defineComponent({
     width: $size;
     height: $size;
     object-fit: contain;
-
     background: #fff;
-    border: 1px solid #E4E4E4;
+    border: 1px solid #e4e4e4;
     border-radius: 3px;
   }
 }

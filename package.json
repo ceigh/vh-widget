@@ -4,13 +4,19 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "lint:es": "vue-cli-service lint --no-fix",
+    "lint:style": "vue-cli-service lint:style --no-fix",
+    "lint": "yarn lint:es && yarn lint:style",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "preview": "serve -s dist"
   },
   "dependencies": {
     "vue": "^3.0.0"
   },
   "devDependencies": {
+    "@ascendancyy/vue-cli-plugin-stylelint": "^1.1.2",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
@@ -25,10 +31,15 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^7.0.0",
+    "lint-staged": "^11.0.0",
     "sass": "^1.35.1",
     "sass-loader": "^10",
+    "serve": "^12.0.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^18.2.0",
     "typescript": "~4.1.5",
-    "webpack": "^4.36.0"
+    "webpack": "^4.36.0",
+    "yorkie": "^2.0.0"
   },
   "eslintConfig": {
     "root": true,
@@ -42,12 +53,29 @@
     ],
     "parserOptions": {
       "ecmaVersion": 2020
-    },
-    "rules": {}
+    }
+  },
+  "stylelint": {
+    "root": true,
+    "extends": "stylelint-config-standard"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "commitlint -e",
+    "pre-push": "yarn lint"
+  },
+  "lint-staged": {
+    "*.{vue,ts,js}": "yarn lint:es",
+    "*.{vue,html,css,scss}": "yarn lint:style"
+  }
 }

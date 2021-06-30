@@ -7,5 +7,9 @@ module.exports = {
     optimization: {
       splitChunks: false
     }
+  },
+
+  pluginOptions: {
+    lintStyleOnBuild: true
   }
 }
