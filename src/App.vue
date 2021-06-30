@@ -10,6 +10,7 @@
       <p class='content-main-text'>
         Этот товар можно оплатить частями Виртаульной Халвой за:
       </p>
+      <p class='content-main-cost'>2 330 ₽/ месяц</p>
     </div>
 
     <img class='content-item' :src='itemImg' alt='товар' />
@@ -31,6 +32,9 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import 'modern-css-reset';
+@import './assets/styles/fonts';
+
 .container {
   position: absolute;
   left: 3rem;
@@ -42,6 +46,7 @@ export default defineComponent({
   background: #fff;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   border-radius: 7px;
+  font-family: 'SF Pro Text', sans-serif;
 }
 
 .head {
@@ -59,17 +64,20 @@ export default defineComponent({
   justify-content: space-between;
 
   &-main {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
     &-text {
-      margin: 0;
-      width: 260px;
+      width: 259px;
       height: 40px;
       font-size: 15px;
       line-height: 20px;
       letter-spacing: -0.36px;
+      margin-bottom: 12px;
+    }
+
+    &-cost {
+      font-family: 'SF Pro Display', sans-serif;
+      font-weight: bold;
+      font-size: 22px;
+      color: #000;
     }
   }
 
