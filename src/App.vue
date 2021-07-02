@@ -112,10 +112,10 @@
           :class="{'schedule-month-line-active': i === 1}"
         />
         <p class="schedule-month-cost">
-          {{ costPerMonth }} ₽
+          {{ i === 1 ? 0 : costPerMonth }} ₽
         </p>
         <p class="schedule-month-date">
-          {{ getDate(i - 1) }}
+          {{ i === 1 ? 'Сегодня' : getDate(i - 1) }}
         </p>
       </div>
 
