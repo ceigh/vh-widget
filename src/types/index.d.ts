@@ -10,6 +10,7 @@ interface VHWidgetOpts {
   partnerLogo?: string
   background?: 1 | 2 | 3 | 4 | 5 | string
   borderRadius?: number
+  showSchedule?: boolean
 }
 
 declare interface Window { VHWidgetOpts: VHWidgetOpts }

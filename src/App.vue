@@ -1,7 +1,7 @@
 <template>
   <div
     class="container"
-    :class="{ 'container-ready': isReady }"
+    :class="{ 'container-ready': isReady, 'container-auto': !showSchedule }"
     :style="{ background, borderRadius }"
   >
     <div
@@ -100,7 +100,7 @@
     </div>
 
     <div
-      v-if="style === 'cart'"
+      v-if="style === 'cart' && showSchedule"
       class="schedule"
     >
       <div
@@ -134,7 +134,7 @@
 
     <div
       class="footer"
-      :style="{ marginTop: `${style === 'cart' ? 7 : 17}px` }"
+      :style="{ marginTop: `${style === 'cart' && showSchedule ? 7 : 14}px` }"
     >
       <p>0₽ - первый платёж</p>
       <p>0₽ - переплат</p>
@@ -152,7 +152,8 @@ const defaultOpts = {
   months: 4,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
   textButton: 'Получить Виртуальную Халву',
-  partnerLogo: ''
+  partnerLogo: '',
+  showSchedule: true
 }
 
 export default defineComponent({
@@ -257,6 +258,10 @@ export default defineComponent({
 
   &-ready {
     opacity: 1;
+  }
+
+  &-auto {
+    height: unset;
   }
 }
 
