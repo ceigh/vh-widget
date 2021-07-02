@@ -1,6 +1,7 @@
 <template>
   <div
     class="container"
+    :class="{ 'container-ready': isReady }"
     :style="{ background, borderRadius }"
   >
     <div
@@ -143,7 +144,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed } from 'vue'
+import { defineComponent, ref, computed, onMounted } from 'vue'
 import AppButton from './components/app/AppButton.vue'
 
 const defaultOpts = {
@@ -155,12 +156,11 @@ const defaultOpts = {
 }
 
 export default defineComponent({
-  components: {
-    AppButton
-  },
+  components: { AppButton },
 
   setup () {
     const maxMonths = 6
+    const isReady = ref(false)
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
     const costPerMonth = computed(() => {
@@ -213,8 +213,14 @@ export default defineComponent({
       })
     }
 
+    onMounted(() => {
+      isReady.value = true
+    })
+
     return {
       ...options,
+
+      isReady,
 
       costPerMonth,
       costPerMonthText,
@@ -246,6 +252,12 @@ export default defineComponent({
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   font-family: 'SF Pro Text', sans-serif;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+
+  &-ready {
+    opacity: 1;
+  }
 }
 
 .head {

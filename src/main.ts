@@ -7,8 +7,8 @@ window.VHWidgetOpts = {
   // partnerLogo: 'https://static.mvideo.ru/assets/facelift/img/logo_red_web_fl1.svg',
   // borderRadius: 20,
   // style: 'item',
-  // style: 'itemPhoto',
-  style: 'cart',
+  style: 'itemPhoto',
+  // style: 'cart',
   // style: 'catalogParts',
   months: 12,
   cost: 9320,
@@ -17,6 +17,8 @@ window.VHWidgetOpts = {
   itemImg: 'https://img.mvideo.ru/Pdb/50126638b.jpg'
 }
 
-const el = document.createElement('div')
-document.body.appendChild(el)
-createApp(App).mount(el)
+window.addEventListener('load', () => {
+  const el = document.createElement('div')
+  document.body.appendChild(el)
+  createApp(App).mount(el)
+})
