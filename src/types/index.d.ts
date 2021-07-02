@@ -11,6 +11,8 @@ interface VHWidgetOpts {
   background?: 1 | 2 | 3 | 4 | 5 | string
   borderRadius?: number
   showSchedule?: boolean
+  left?: string
+  bottom?: string
 }
 
 declare interface Window { VHWidgetOpts: VHWidgetOpts }

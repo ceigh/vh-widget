@@ -2,7 +2,7 @@
   <div
     class="container"
     :class="{ 'container-ready': isReady, 'container-auto': !showSchedule }"
-    :style="{ background, borderRadius }"
+    :style="{ background, borderRadius, left, bottom }"
   >
     <div
       class="head"
@@ -153,7 +153,9 @@ const defaultOpts = {
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
   textButton: 'Получить Виртуальную Халву',
   partnerLogo: '',
-  showSchedule: true
+  showSchedule: true,
+  left: '3rem',
+  bottom: '3rem'
 }
 
 export default defineComponent({
@@ -245,8 +247,6 @@ export default defineComponent({
 
 .container {
   position: absolute;
-  left: 3rem;
-  bottom: 3rem;
   width: 443px;
   height: 208px;
   padding: 16px;

@@ -11,6 +11,8 @@ window.VHWidgetOpts = {
   // style: 'catalogParts',
   // style: 'cart',
   // showSchedule: false,
+  // left: '1rem',
+  // bottom: '1rem',
   months: 12,
   cost: 9320,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
