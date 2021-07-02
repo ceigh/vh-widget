@@ -10,7 +10,7 @@ window.VHWidgetOpts = {
   // style: 'itemPhoto',
   style: 'cart',
   // style: 'catalogParts',
-  months: 7,
+  months: 12,
   cost: 9320,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
   textButton: 'Получить Виртуальную Халву',

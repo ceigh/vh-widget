@@ -115,7 +115,7 @@
           {{ costPerMonth }} ₽
         </p>
         <p class="schedule-month-date">
-          05.06.2021
+          {{ getDate(i - 1) }}
         </p>
       </div>
 
@@ -205,6 +205,14 @@ export default defineComponent({
       return months > maxMonths ? maxMonths : months
     })
 
+    function getDate (i: number): string {
+      const today = new Date()
+      today.setMonth(today.getMonth() + i)
+      return today.toLocaleString('ru', {
+        day: 'numeric', month: 'numeric', year: 'numeric'
+      })
+    }
+
     return {
       ...options,
 
@@ -215,7 +223,9 @@ export default defineComponent({
       monthsToShow,
 
       background,
-      borderRadius
+      borderRadius,
+
+      getDate
     }
   }
 })
