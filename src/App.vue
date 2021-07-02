@@ -98,7 +98,43 @@
       >
     </div>
 
-    <div class="footer">
+    <div
+      v-if="style === 'cart'"
+      class="schedule"
+    >
+      <div
+        v-for="i in monthsToShow"
+        :key="i"
+        class="schedule-month"
+      >
+        <div
+          class="schedule-month-line"
+          :class="{'schedule-month-line-active': i === 1}"
+        />
+        <p class="schedule-month-cost">
+          {{ costPerMonth }} ₽
+        </p>
+        <p class="schedule-month-date">
+          05.06.2021
+        </p>
+      </div>
+
+      <div
+        v-if="months > maxMonths"
+        class="schedule-month-more"
+      >
+        <p>
+          +{{ months - maxMonths }}
+          <br>
+          мес.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="footer"
+      :style="{ marginTop: `${style === 'cart' ? 7 : 17}px` }"
+    >
       <p>0₽ - первый платёж</p>
       <p>0₽ - переплат</p>
       <p>{{ months }} мес. - рассрочка</p>
@@ -114,7 +150,8 @@ const defaultOpts = {
   style: 'catalog',
   months: 4,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',
-  textButton: 'Получить Виртуальную Халву'
+  textButton: 'Получить Виртуальную Халву',
+  partnerLogo: ''
 }
 
 export default defineComponent({
@@ -123,6 +160,7 @@ export default defineComponent({
   },
 
   setup () {
+    const maxMonths = 6
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
     const costPerMonth = computed(() => {
@@ -162,12 +200,19 @@ export default defineComponent({
       return `${radius}px`
     })
 
+    const monthsToShow = computed(() => {
+      const { months } = options
+      return months > maxMonths ? maxMonths : months
+    })
+
     return {
       ...options,
 
       costPerMonth,
       costPerMonthText,
       textButton,
+      maxMonths,
+      monthsToShow,
 
       background,
       borderRadius
@@ -279,6 +324,52 @@ export default defineComponent({
   cursor: pointer;
 }
 
+.schedule {
+  display: flex;
+  margin-top: 16px;
+
+  &-month {
+    flex: 0 1 80px;
+
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &-line {
+      height: 4px;
+      background: #b7bac6;
+      border-radius: 10px;
+
+      &-active {
+        background: $red;
+      }
+    }
+
+    &-cost {
+      font-weight: 600;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    &-date {
+      font-size: 9px;
+    }
+
+    &-more {
+      flex: 0 0 40px;
+      background: rgba(#b7bac6, 0.2);
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 7px;
+      line-height: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
 .footer {
   max-width: 284px;
   height: 20px;
@@ -287,6 +378,5 @@ export default defineComponent({
   font-size: 9px;
   line-height: 20px;
   letter-spacing: -0.36px;
-  margin-top: 17px;
 }
 </style>
