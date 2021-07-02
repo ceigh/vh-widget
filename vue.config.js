@@ -3,7 +3,12 @@ module.exports = {
   productionSourceMap: false,
 
   css: {
-    extract: false
+    extract: false,
+    loaderOptions: {
+      sass: {
+        additionalData: `$path: '${process.env.VUE_APP_PATH || ''}';`
+      }
+    }
   },
 
   configureWebpack: {

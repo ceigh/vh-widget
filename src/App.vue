@@ -10,7 +10,7 @@
     >
       <div class="head-logo">
         <img
-          src="./assets/img/logo.svg"
+          :src="getImg('logo.svg')"
           alt="халва"
         >
 
@@ -19,7 +19,7 @@
           class="head-logo-partner"
         >
           <img
-            src="./assets/img/separator.svg"
+            :src="getImg('separator.svg')"
             alt="|"
             class="head-logo-partner-separator"
           >
@@ -33,7 +33,7 @@
 
       <img
         class="head-close"
-        src="./assets/img/close.svg"
+        :src="getImg('close.svg')"
         alt="x"
       >
     </div>
@@ -74,7 +74,7 @@
           <span>{{ costPerMonthText }}</span>
           <img
             class="tip"
-            src="./assets/img/tip.svg"
+            :src="getImg('tip.svg')"
             alt="?"
           >
         </p>
@@ -85,7 +85,7 @@
           <img
             v-if="style === 'cart'"
             class="tip"
-            src="./assets/img/tip.svg"
+            :src="getImg('tip.svg')"
             alt="?"
           >
         </div>
@@ -216,13 +216,16 @@ export default defineComponent({
       })
     }
 
+    function getImg (name: string): string {
+      return `${process.env.VUE_APP_PATH || ''}/img/${name}`
+    }
+
     onMounted(() => {
       isReady.value = true
     })
 
     return {
       ...options,
-
       isReady,
 
       costPerMonth,
@@ -234,7 +237,8 @@ export default defineComponent({
       background,
       borderRadius,
 
-      getDate
+      getDate,
+      getImg
     }
   }
 })
