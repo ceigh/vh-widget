@@ -1,14 +1,14 @@
 $fonts-path: '#{$path}/fonts';
 
 @font-face {
-  font-family: 'SF Pro Text';
+  font-family: 'VH SF Pro Text';
   src: url('#{$fonts-path}/SFProTextRegular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'SF Pro Display';
+  font-family: 'VH SF Pro Display';
   src: url('#{$fonts-path}/SFProDisplayRegular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;

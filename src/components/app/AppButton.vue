@@ -5,8 +5,6 @@
 </template>
 
 <style lang="scss" scoped>
-@import '../../assets/styles/variables';
-
 button {
   width: 204px;
   height: 32px;

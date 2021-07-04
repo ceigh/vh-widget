@@ -1,0 +1,38 @@
+/* breakpoints */
+@mixin xl() {
+  @media (max-width: $xl) {
+    @content;
+  }
+}
+
+@mixin lg() {
+  @media (max-width: $lg) {
+    @content;
+  }
+}
+
+@mixin md() {
+  @media (max-width: $md) {
+    @content;
+  }
+}
+
+@mixin sm() {
+  @media (max-width: $sm) {
+    @content;
+  }
+}
+
+@mixin xs() {
+  @media (max-width: $xs) {
+    @content;
+  }
+}
+
+/* fonts */
+@mixin font1() {
+  font-family: 'VH SF Pro Text', sans-serif;
+}
+@mixin font2() {
+  font-family: 'VH SF Pro Display', sans-serif;
+}

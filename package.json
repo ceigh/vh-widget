@@ -36,8 +36,9 @@
     "sass": "^1.35.1",
     "sass-loader": "^10",
     "serve": "^12.0.0",
-    "stylelint": "^8.0.0",
-    "stylelint-config-standard": "^18.2.0",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended-scss": "^4.2.0",
+    "stylelint-scss": "^3.19.0",
     "typescript": "~4.1.5",
     "webpack": "^4.36.0",
     "yorkie": "^2.0.0"
@@ -58,7 +59,7 @@
   },
   "stylelint": {
     "root": true,
-    "extends": "stylelint-config-standard"
+    "extends": "stylelint-config-recommended-scss"
   },
   "commitlint": {
     "extends": [

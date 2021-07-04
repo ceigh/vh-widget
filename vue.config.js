@@ -6,7 +6,11 @@ module.exports = {
     extract: false,
     loaderOptions: {
       sass: {
-        additionalData: `$path: '${process.env.VUE_APP_PATH || ''}';`
+        additionalData: `
+$path: '${process.env.VUE_APP_PATH || ''}';
+@import './src/assets/styles/variables';
+@import './src/assets/styles/mixins';
+`
       }
     }
   },

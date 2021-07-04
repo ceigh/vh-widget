@@ -247,7 +247,6 @@ export default defineComponent({
 <style lang="scss" scoped>
 @import './assets/styles/reset';
 @import './assets/styles/fonts';
-@import './assets/styles/variables';
 
 .container {
   position: absolute;
@@ -256,9 +255,9 @@ export default defineComponent({
   padding: 16px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
-  font-family: 'SF Pro Text', sans-serif;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+  @include font1;
 
   &-ready {
     opacity: 1;
@@ -312,12 +311,12 @@ export default defineComponent({
       &-catalog {
         width: 317px;
         height: 64px;
-        font-family: 'SF Pro Display', sans-serif;
         font-size: 26px;
         line-height: 32px;
         letter-spacing: -0.28px;
         color: #000;
         margin-bottom: 24px;
+        @include font2;
 
         &-highlight {
           color: $red;
@@ -328,13 +327,13 @@ export default defineComponent({
 
     &-cost {
       height: 22px;
-      font-family: 'SF Pro Display', sans-serif;
       font-weight: bold;
       font-size: 22px;
       color: #000;
       display: flex;
       align-items: center;
       margin-bottom: 16px;
+      @include font2;
     }
   }
 
