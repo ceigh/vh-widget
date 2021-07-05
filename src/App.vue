@@ -279,7 +279,7 @@ export default defineComponent({
     width: 95%;
     min-height: 170px;
     left: unset !important;
-    bottom: 3rem !important;
+    bottom: 1rem !important;
   }
 
   &-ready {
@@ -376,6 +376,10 @@ export default defineComponent({
       align-items: center;
       margin-bottom: 16px;
       @include font2;
+      @include sm {
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
     }
   }
 
