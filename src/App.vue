@@ -262,7 +262,8 @@ export default defineComponent({
   letter-spacing: -0.36px;
   @include sm {
     font-size: 7px;
-    margin-top: 10px !important;
+    margin-top: 8px !important;
+    max-width: 230px;
   }
 }
 
@@ -271,6 +272,7 @@ export default defineComponent({
   width: 443px;
   min-height: 208px;
   padding: 16px;
+  padding-bottom: 8px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   opacity: 0;
@@ -292,10 +294,6 @@ export default defineComponent({
 
   &-auto {
     min-height: unset;
-
-    .footer {
-      margin-top: 3px !important;
-    }
   }
 }
 
