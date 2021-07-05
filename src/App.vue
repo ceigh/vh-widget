@@ -162,7 +162,7 @@ export default defineComponent({
   components: { AppButton },
 
   setup () {
-    const maxMonths = 6
+    const maxMonths = 5
     const isReady = ref(false)
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
@@ -248,29 +248,58 @@ export default defineComponent({
 @import './assets/styles/reset';
 @import './assets/styles/fonts';
 
+.footer {
+  max-width: 284px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  line-height: 20px;
+  letter-spacing: -0.36px;
+  @include sm {
+    font-size: 7px;
+  }
+}
+
 .container {
-  position: absolute;
+  position: fixed;
   width: 443px;
-  height: 208px;
+  min-height: 208px;
   padding: 16px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
   @include font1;
+  @include sm {
+    padding: 13px;
+    padding-bottom: 4px;
+    margin: 0 auto;
+    width: 95%;
+    min-height: 170px;
+    left: unset !important;
+    bottom: 3rem !important;
+  }
 
   &-ready {
     opacity: 1;
   }
 
   &-auto {
-    height: unset;
+    min-height: unset;
+
+    .footer {
+      margin-top: 3px !important;
+    }
   }
 }
 
 .head {
   display: flex;
   justify-content: space-between;
+  @include sm {
+    margin-bottom: 12px !important;
+  }
 
   &-logo {
     display: flex;
@@ -307,6 +336,13 @@ export default defineComponent({
       line-height: 20px;
       letter-spacing: -0.36px;
       margin-bottom: 12px;
+      @include sm {
+        width: 166px;
+        height: unset;
+        font-size: 10px;
+        line-height: 14px;
+        margin-bottom: 7px;
+      }
 
       &-catalog {
         width: 317px;
@@ -338,14 +374,16 @@ export default defineComponent({
   }
 
   &-item {
-    $size: 80px;
-
-    width: $size;
-    height: $size;
+    --size: 80px;
+    width: var(--size);
+    height: var(--size);
     object-fit: contain;
     background: #fff;
     border: 1px solid #e4e4e4;
     border-radius: 3px;
+    @include sm {
+      --size: 65px;
+    }
   }
 }
 
@@ -357,9 +395,16 @@ export default defineComponent({
 .schedule {
   display: flex;
   margin-top: 16px;
+  @include sm {
+    margin-top: 13px;
+  }
 
   &-month {
-    flex: 0 1 80px;
+    --size: 80px;
+    flex: 0 1 var(--size);
+    @include sm {
+      --size: 65px;
+    }
 
     &:not(:last-child) {
       margin-right: 8px;
@@ -369,6 +414,9 @@ export default defineComponent({
       height: 4px;
       background: #b7bac6;
       border-radius: 10px;
+      @include sm {
+        height: 3.25px;
+      }
 
       &-active {
         background: $red;
@@ -379,10 +427,16 @@ export default defineComponent({
       font-weight: 600;
       font-size: 12px;
       margin-top: 3px;
+      @include sm {
+        font-size: 10px;
+      }
     }
 
     &-date {
       font-size: 9px;
+      @include sm {
+        font-size: 7px;
+      }
     }
 
     &-more {
@@ -398,15 +452,5 @@ export default defineComponent({
       text-align: center;
     }
   }
-}
-
-.footer {
-  max-width: 284px;
-  height: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 9px;
-  line-height: 20px;
-  letter-spacing: -0.36px;
 }
 </style>

@@ -6,7 +6,7 @@
 
 <style lang="scss" scoped>
 button {
-  width: 204px;
+  min-width: 204px;
   height: 32px;
   border-radius: 4px;
   background: $red;
@@ -19,5 +19,10 @@ button {
   cursor: pointer;
   border: none;
   user-select: none;
+  @include sm {
+    font-size: 9px !important;
+    height: 26px;
+    min-width: 166px;
+  }
 }
 </style>
