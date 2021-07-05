@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="isShow"
     class="container"
     :class="{ 'container-ready': isReady, 'container-auto': !showSchedule }"
     :style="{ background, borderRadius, left, bottom }"
@@ -35,6 +36,7 @@
         class="head-close"
         :src="getImg('close.svg')"
         alt="x"
+        @click="isShow = false"
       >
     </div>
 
@@ -164,6 +166,7 @@ export default defineComponent({
   setup () {
     const maxMonths = 5
     const isReady = ref(false)
+    const isShow = ref(true)
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
     const costPerMonth = computed(() => {
@@ -227,6 +230,7 @@ export default defineComponent({
     return {
       ...options,
       isReady,
+      isShow,
 
       costPerMonth,
       costPerMonthText,
