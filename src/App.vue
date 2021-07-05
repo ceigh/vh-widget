@@ -258,6 +258,7 @@ export default defineComponent({
   letter-spacing: -0.36px;
   @include sm {
     font-size: 7px;
+    margin-top: 10px !important;
   }
 }
 
@@ -353,6 +354,11 @@ export default defineComponent({
         color: #000;
         margin-bottom: 24px;
         @include font2;
+        @include sm {
+          margin-bottom: 12px;
+          font-size: 22px;
+          width: unset;
+        }
 
         &-highlight {
           color: $red;
