@@ -2,7 +2,7 @@
   <div
     v-if="isShow"
     class="container"
-    :class="{ 'container-ready': isReady, 'container-auto': !showSchedule }"
+    :class="{ 'container-auto': !showSchedule }"
     :style="{ background, borderRadius, left, bottom }"
   >
     <div
@@ -146,7 +146,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed, onMounted } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import AppButton from './components/app/AppButton.vue'
 
 const defaultOpts = {
@@ -165,7 +165,6 @@ export default defineComponent({
 
   setup () {
     const maxMonths = 5
-    const isReady = ref(false)
     const isShow = ref(true)
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
 
@@ -223,13 +222,8 @@ export default defineComponent({
       return `${process.env.VUE_APP_PATH || ''}/img/${name}`
     }
 
-    onMounted(() => {
-      isReady.value = true
-    })
-
     return {
       ...options,
-      isReady,
       isShow,
 
       costPerMonth,
@@ -252,21 +246,6 @@ export default defineComponent({
 @import './assets/styles/reset';
 @import './assets/styles/fonts';
 
-.footer {
-  max-width: 284px;
-  height: 20px;
-  display: flex;
-  justify-content: space-between;
-  font-size: 9px;
-  line-height: 20px;
-  letter-spacing: -0.36px;
-  @include sm {
-    font-size: 7px;
-    margin-top: 8px !important;
-    max-width: 230px;
-  }
-}
-
 .container {
   position: fixed;
   width: 443px;
@@ -275,8 +254,7 @@ export default defineComponent({
   padding-bottom: 8px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
   @include font1;
   @include sm {
     padding: 13px;
@@ -286,10 +264,6 @@ export default defineComponent({
     min-height: 170px;
     left: unset !important;
     bottom: 1rem !important;
-  }
-
-  &-ready {
-    opacity: 1;
   }
 
   &-auto {
@@ -463,6 +437,21 @@ export default defineComponent({
       justify-content: center;
       text-align: center;
     }
+  }
+}
+
+.footer {
+  max-width: 284px;
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  line-height: 20px;
+  letter-spacing: -0.36px;
+  @include sm {
+    font-size: 7px;
+    margin-top: 8px !important;
+    max-width: 230px;
   }
 }
 </style>
