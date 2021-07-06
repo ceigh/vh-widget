@@ -2,8 +2,8 @@
   <div
     v-if="isShow"
     class="container"
-    :class="{ 'container-auto': !showSchedule,
-              'container-collapseable': collapseable,
+    :class="{ 'container-auto-height': !showSchedule || isCollapsed,
+              'container-auto-width': isCollapsed,
               'container-collapsed': isCollapsed }"
     :style="{ background, borderRadius, left, bottom }"
   >
@@ -21,6 +21,7 @@
     </div>
 
     <div
+      v-if="!isCollapsed"
       class="head"
       :style="{ marginBottom: `${partnerLogo ? 10 : 18}px`}"
     >
@@ -48,6 +49,7 @@
       </div>
 
       <img
+        v-if="!collapseable"
         class="head-close"
         :src="getImg('close.svg')"
         alt="x"
@@ -78,7 +80,7 @@
         </div>
 
         <p
-          v-else
+          v-else-if="!isCollapsed"
           class="content-main-text"
         >
           {{ text }}
@@ -96,11 +98,29 @@
           >
         </p>
 
-        <div style="display: flex;">
-          <app-button>{{ textButton }}</app-button>
+        <div
+          v-if="style === 'cart' && isCollapsed"
+          class="buy-text"
+        >
+          <div>
+            <span class="buy-text-primary">{{ buyText.slice(0, -2) }}</span>
+            <span>x {{ months }} мес</span>
+          </div>
 
           <img
-            v-if="style === 'cart'"
+            class="tip"
+            :src="getImg('tip.svg')"
+            alt="?"
+          >
+        </div>
+
+        <div style="display: flex;">
+          <app-button :sm="isCollapsed">
+            {{ textButton }}
+          </app-button>
+
+          <img
+            v-if="style === 'cart' && !isCollapsed"
             class="tip"
             :src="getImg('tip.svg')"
             alt="?"
@@ -109,7 +129,7 @@
       </div>
 
       <img
-        v-if="['itemPhoto', 'cart'].includes(style) && itemImg"
+        v-if="['itemPhoto', 'cart'].includes(style) && itemImg && !isCollapsed"
         class="content-item"
         :src="itemImg"
         alt="товар"
@@ -117,7 +137,7 @@
     </div>
 
     <div
-      v-if="style === 'cart' && showSchedule"
+      v-if="style === 'cart' && showSchedule && !isCollapsed"
       class="schedule"
     >
       <div
@@ -150,6 +170,7 @@
     </div>
 
     <div
+      v-if="!isCollapsed"
       class="footer"
       :style="{ marginTop: `${style === 'cart' && showSchedule ? 7 : 14}px` }"
     >
@@ -174,7 +195,7 @@ const defaultOpts = {
   left: '3rem',
   bottom: '3rem',
   collapseable: false,
-  initialCollapse: false
+  initialCollapse: true
 }
 
 export default defineComponent({
@@ -194,9 +215,14 @@ export default defineComponent({
       return `${costPerMonth.value} ₽/ месяц`
     })
 
+    const buyText = computed(() => {
+      return `Купить за ${costPerMonthText.value}`
+    })
     const textButton = computed(() => {
-      if (options.style === 'cart') {
-        return `Купить за ${costPerMonthText.value}`
+      if (isCollapsed.value) {
+        return 'Оплатить Виртуальной Халвой'
+      } else if (options.style === 'cart') {
+        return buyText.value
       }
       return options.textButton
     })
@@ -247,6 +273,7 @@ export default defineComponent({
 
       costPerMonth,
       costPerMonthText,
+      buyText,
       textButton,
       maxMonths,
       monthsToShow,
@@ -266,27 +293,42 @@ export default defineComponent({
 @import './assets/styles/fonts';
 
 .container {
+  $padding: 16px;
+  $padding-sm: 13px;
+
   position: fixed;
   width: 443px;
   min-height: 208px;
-  padding: 16px;
+  padding: $padding;
   padding-bottom: 8px;
   color: #2e2e2e;
   box-shadow: 0 4px 25px rgba(23, 19, 29, 0.12);
   opacity: 1;
   @include font1;
   @include sm {
-    padding: 13px;
+    padding: $padding-sm;
     padding-bottom: 4px;
     margin: 0 auto;
-    width: 95%;
+    width: 95% !important;
     min-height: 170px;
     left: unset !important;
     bottom: 1rem !important;
   }
 
-  &-auto {
-    min-height: unset;
+  &-auto-height {
+    min-height: auto;
+  }
+
+  &-auto-width {
+    width: auto;
+  }
+
+  &-collapsed {
+    padding-bottom: $padding;
+    min-width: 280px;
+    @include sm {
+      padding-bottom: $padding-sm;
+    }
   }
 }
 
@@ -307,6 +349,19 @@ export default defineComponent({
     img {
       transform: rotate(180deg);
     }
+  }
+}
+
+.buy-text {
+  display: flex;
+  align-items: center;
+  margin-bottom: 7px;
+  font-size: 15px;
+  @include font2;
+
+  &-primary {
+    font-weight: bold;
+    margin-right: 6px;
   }
 }
 

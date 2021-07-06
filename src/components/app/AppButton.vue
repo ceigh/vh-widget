@@ -1,10 +1,26 @@
 <template>
-  <button>
+  <button :class="{ sm }">
     <slot />
   </button>
 </template>
 
+<script>
+export default {
+  props: {
+    sm: {
+      type: Boolean,
+      default: false
+    }
+  }
+}
+</script>
+
 <style lang="scss" scoped>
+@mixin btn-sm {
+  font-size: 9px !important;
+  height: 26px;
+}
+
 button {
   min-width: 204px;
   height: 32px;
@@ -20,9 +36,13 @@ button {
   border: none;
   user-select: none;
   @include sm {
-    font-size: 9px !important;
-    height: 26px;
+    @include btn-sm;
     min-width: 166px;
+  }
+
+  &.sm {
+    @include btn-sm;
+    min-width: 152px;
   }
 }
 </style>
