@@ -273,7 +273,8 @@ export default defineComponent({
     }
 
     function getImg (name: string): string {
-      return `${process.env.VUE_APP_PATH || ''}${process.env.PUBLIC_PATH || '/'}img/${name}`
+      return `${process.env.VUE_APP_PATH || ''}${
+        process.env.VUE_APP_PUBLIC_PATH || '/'}img/${name}`
     }
 
     return {
