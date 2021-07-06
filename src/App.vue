@@ -2,9 +2,24 @@
   <div
     v-if="isShow"
     class="container"
-    :class="{ 'container-auto': !showSchedule }"
+    :class="{ 'container-auto': !showSchedule,
+              'container-collapseable': collapseable,
+              'container-collapsed': isCollapsed }"
     :style="{ background, borderRadius, left, bottom }"
   >
+    <div
+      v-if="collapseable"
+      class="collapse-btn"
+      :class="{ 'collapse-btn-collapsed': isCollapsed }"
+      :style="{ background }"
+      @click="isCollapsed = !isCollapsed"
+    >
+      <img
+        :src="getImg('tick.svg')"
+        alt="✓"
+      >
+    </div>
+
     <div
       class="head"
       :style="{ marginBottom: `${partnerLogo ? 10 : 18}px`}"
@@ -157,7 +172,9 @@ const defaultOpts = {
   partnerLogo: '',
   showSchedule: true,
   left: '3rem',
-  bottom: '3rem'
+  bottom: '3rem',
+  collapseable: false,
+  initialCollapse: false
 }
 
 export default defineComponent({
@@ -167,6 +184,7 @@ export default defineComponent({
     const maxMonths = 5
     const isShow = ref(true)
     const options = { ...defaultOpts, ...window.VHWidgetOpts }
+    const isCollapsed = ref(options.collapseable && options.initialCollapse)
 
     const costPerMonth = computed(() => {
       const { cost, months } = options
@@ -225,6 +243,7 @@ export default defineComponent({
     return {
       ...options,
       isShow,
+      isCollapsed,
 
       costPerMonth,
       costPerMonthText,
@@ -268,6 +287,26 @@ export default defineComponent({
 
   &-auto {
     min-height: unset;
+  }
+}
+
+.collapse-btn {
+  $height: 18px;
+  position: absolute;
+  right: 0;
+  top: calc(#{ - $height} - 2px);
+  width: 22px;
+  height: $height;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+
+  &-collapsed {
+    img {
+      transform: rotate(180deg);
+    }
   }
 }
 

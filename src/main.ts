@@ -13,6 +13,8 @@ window.VHWidgetOpts = {
   // showSchedule: false,
   // left: '1rem',
   // bottom: '1rem',
+  collapseable: true,
+  // initialCollapse: true,
   months: 12,
   cost: 9320,
   text: 'Этот товар можно оплатить частями Виртаульной Халвой за:',

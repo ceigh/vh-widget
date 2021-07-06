@@ -13,6 +13,8 @@ interface VHWidgetOpts {
   showSchedule?: boolean
   left?: string
   bottom?: string
+  collapseable?: boolean
+  initialCollapse?: boolean
 }
 
 declare interface Window { VHWidgetOpts: VHWidgetOpts }
