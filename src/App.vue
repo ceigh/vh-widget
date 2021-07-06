@@ -57,7 +57,17 @@
       >
     </div>
 
-    <div class="content">
+    <div
+      class="content"
+      :class="{ 'content-collapsed': isCollapsed }"
+    >
+      <img
+        v-if="['itemPhoto', 'cart'].includes(style) && itemImg && isCollapsed"
+        class="content-item content-item-collapsed"
+        :src="itemImg"
+        alt="товар"
+      >
+
       <div class="content-main">
         <div
           v-if="['catalog', 'catalogParts'].includes(style)"
@@ -103,8 +113,11 @@
           class="buy-text"
         >
           <div>
-            <span class="buy-text-primary">{{ buyText.slice(0, -2) }}</span>
-            <span>x {{ months }} мес</span>
+            <span class="buy-text-primary">
+              <span class="buy-text-primary-part">Купить за</span>
+              {{ costPerMonth }} ₽/ мес
+            </span>
+            <span> x {{ months }} мес</span>
           </div>
 
           <img
@@ -215,14 +228,11 @@ export default defineComponent({
       return `${costPerMonth.value} ₽/ месяц`
     })
 
-    const buyText = computed(() => {
-      return `Купить за ${costPerMonthText.value}`
-    })
     const textButton = computed(() => {
       if (isCollapsed.value) {
         return 'Оплатить Виртуальной Халвой'
       } else if (options.style === 'cart') {
-        return buyText.value
+        return `Купить за ${costPerMonthText.value}`
       }
       return options.textButton
     })
@@ -273,7 +283,6 @@ export default defineComponent({
 
       costPerMonth,
       costPerMonthText,
-      buyText,
       textButton,
       maxMonths,
       monthsToShow,
@@ -325,7 +334,6 @@ export default defineComponent({
 
   &-collapsed {
     padding-bottom: $padding;
-    min-width: 280px;
     @include sm {
       padding-bottom: $padding-sm;
     }
@@ -361,7 +369,12 @@ export default defineComponent({
 
   &-primary {
     font-weight: bold;
-    margin-right: 6px;
+
+    &-part {
+      @include xs {
+        display: none;
+      }
+    }
   }
 }
 
@@ -398,6 +411,12 @@ export default defineComponent({
 .content {
   display: flex;
   justify-content: space-between;
+
+  &-collapsed {
+    align-items: center;
+    padding-right: 20px;
+    justify-content: flex-start;
+  }
 
   &-main {
     &-text {
@@ -454,6 +473,7 @@ export default defineComponent({
   }
 
   &-item {
+    $size-sm: 65px;
     --size: 80px;
     width: var(--size);
     height: var(--size);
@@ -462,7 +482,12 @@ export default defineComponent({
     border: 1px solid #e4e4e4;
     border-radius: 3px;
     @include sm {
-      --size: 65px;
+      --size: #{$size-sm};
+    }
+
+    &-collapsed {
+      --size: #{$size-sm};
+      margin-right: 16px;
     }
   }
 }
