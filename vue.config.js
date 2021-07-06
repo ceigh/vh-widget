@@ -1,4 +1,8 @@
+const publicPath = process.env.PUBLIC_PATH || '/'
+
 module.exports = {
+  publicPath,
+
   filenameHashing: false,
   productionSourceMap: false,
 
@@ -7,7 +11,7 @@ module.exports = {
     loaderOptions: {
       sass: {
         additionalData: `
-$path: '${process.env.VUE_APP_PATH || ''}';
+$path: '${process.env.VUE_APP_PATH || ''}${publicPath}';
 @import './src/assets/styles/variables';
 @import './src/assets/styles/mixins';
 `

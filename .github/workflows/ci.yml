@@ -24,7 +24,7 @@ jobs:
         run: yarn
 
       - name: Build
-        run: yarn run build
+        run: PUBLIC_PATH=/vh-widget/ yarn run build
 
       - name: Deploy pages
         uses: peaceiris/actions-gh-pages@v3

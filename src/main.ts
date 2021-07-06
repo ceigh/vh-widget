@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 
-// TODO: remove
+/*
 window.VHWidgetOpts = {
   // background: 3,
   // partnerLogo: 'https://static.mvideo.ru/assets/facelift/img/logo_red_web_fl1.svg',
@@ -21,6 +21,7 @@ window.VHWidgetOpts = {
   textButton: 'Получить Виртуальную Халву',
   itemImg: 'https://img.mvideo.ru/Pdb/50126638b.jpg'
 }
+*/
 
 window.addEventListener('load', () => {
   const el = document.createElement('div')
